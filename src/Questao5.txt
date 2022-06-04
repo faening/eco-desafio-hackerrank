@@ -1,0 +1,34 @@
+// https://www.hackerrank.com/challenges/java-strings-introduction/problem?isFullScreen=true
+
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        
+        Scanner sc=new Scanner(System.in);
+        String A=sc.next();
+        String B=sc.next();
+        
+        /* Enter your code here. Print output to STDOUT. */
+        System.out.println(A.length() + B.length());
+        
+        String r = A.toLowerCase().charAt(0) > B.toLowerCase().charAt(0) ? "Yes" : "No";
+        System.out.println(r);
+        
+        String o = upperCaseFirst(A) + " " + upperCaseFirst(B);
+        System.out.println(o);
+        
+        sc.close();
+    }
+    
+    public static String upperCaseFirst(String s) {
+        char[] ar = s.toCharArray();
+        ar[0] = Character.toUpperCase(ar[0]);
+        return new String(ar);
+    }
+}
+
+
+
