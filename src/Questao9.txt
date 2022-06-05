@@ -1,0 +1,49 @@
+// https://www.hackerrank.com/challenges/game-of-thrones/problem?isFullScreen=true
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Solution {
+    public static void main(String[] args) {
+        String s = "aaaabbbb";
+        System.out.println( Solution.gameOfThrones(s) );
+    }
+
+//  Para ser palíndromo, o anagrama deve conter duplas de caracteres (aa, bb, ...)
+//  Se o tamanho do anagrama for um número impar, um único caractere pode ficar sem dupla
+    public static String gameOfThrones(String s) {
+//      Armazenar os caracteres da String no ArrayList
+        List<String> sList = new ArrayList<String>();
+
+        for (int i = 0; i < s.length(); i++) {
+            sList.add(String.valueOf(s.charAt(i)));
+        }
+
+//      Armazenar um elemento do ArrayList em uma variável para ser procurado no proprio ArrayList
+//      O elemento armazenado será excluído para evitar que seja comparado com ele mesmo
+        boolean isAnagram = true;  // (flag) É anagrama
+        int singleCharacter = 0;   // (flag) contador de caracteres únicos
+
+        while (isAnagram && sList.size() > 0) {
+            String c = sList.get(0);
+            sList.remove(0);
+
+            for (int i = 0; i < sList.size(); i++) {
+                if (c.equals(sList.get(i))) {
+                    sList.remove(i);
+                    break;
+                }
+
+                if (i == sList.size() - 1) {
+                    if (singleCharacter == 0) {
+                        singleCharacter++;
+                    } else  {
+                        isAnagram = false;
+                    }
+                }
+            }
+        }
+
+        return isAnagram ? "Yes" : "No";
+    }
+}
